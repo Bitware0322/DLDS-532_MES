@@ -2,6 +2,13 @@
 
 本仓库汇总 DLDS-532 实训平台的三套配套工程：PLC/HMI 原程序、Windows 下单终端、工业数据可视化大屏。
 
+## 下载
+
+已打包的 Windows 程序见 [Releases · V1.0](https://github.com/Bitware0322/DLDS-532_MES/releases/tag/v1.0)：
+
+- `DLDS532_OrderApp.exe` — 下单终端，单文件，双击运行
+- `DLDS-532-0.5.0-win-x64-setup.exe` — 工业数据可视化大屏安装程序（Windows x64）
+
 ## 目录结构
 
 | 目录 | 内容 | 技术栈 |
