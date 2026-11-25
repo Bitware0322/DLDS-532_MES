@@ -1,0 +1,52 @@
+# ── Python ────────────────────────────────────
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+
+# ── PyInstaller 产物（可由 build_exe.bat 重建）──
+dist/
+
+# ── .NET 构建产物 ──────────────────────────────
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+*.cache
+*.pdb
+*.dll
+*.exe
+!tools/**/*.py
+
+# ── 安装包产物（可由 installer/build-installer.bat 重建）──
+installer/Output/
+*.iss.log
+
+# ── IDE / 编辑器 ───────────────────────────────
+.vs/
+.idea/
+.vscode/
+
+# ── 日志 / 测试临时文件 ────────────────────────
+*.log
+TestResults/
+*.trx
+*.coverage
+
+# ── 运行时数据库与本地配置 ──────────────────────
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# ── 工具运行时数据 ──────────────────────────────
+.workbuddy/
+
+# ── 操作系统 ──────────────────────────────────
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,4 @@
+PySide6-Essentials>=6.6
+python-snap7>=2.0
+# 打包需要（运行不需要）
+pyinstaller>=6.0

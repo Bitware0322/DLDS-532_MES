@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>DLDS532</AssemblyName>
+    <RootNamespace>DLDS532.App</RootNamespace>
+    <ApplicationIcon />
+    <Version>0.5.0</Version>
+    <Product>DLDS-532 工业网络智能控制与维护可视化系统</Product>
+    <Company>DLDS-532</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DLDS532.DataModels\DLDS532.DataModels.csproj" />
+    <ProjectReference Include="..\DLDS532.PlcData\DLDS532.PlcData.csproj" />
+    <ProjectReference Include="..\DLDS532.Communication\DLDS532.Communication.csproj" />
+    <ProjectReference Include="..\DLDS532.Services\DLDS532.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\config\db120.mapping.json" Link="config\db120.mapping.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

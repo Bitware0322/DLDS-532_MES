@@ -1,0 +1,39 @@
+# ── .NET 构建产物 ──────────────────────────────
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+*.cache
+*.pdb
+*.dll
+*.exe
+!tools/**/*.py
+
+# ── 测试与诊断临时文件 ────────────────────────
+TestResults/
+*.trx
+*.coverage
+*.log
+
+# ── 出图产物（体积大、可重新生成）──────────────
+artifacts/*.png
+artifacts/*.error.txt
+
+# ── 发布与安装包产物（可由 installer\build-installer.bat 重建）──
+dist/
+installer/Output/
+*.iss.log
+
+# ── 工具运行时数据（本机路径，不入库）──────────
+.workbuddy/
+.vs/
+.idea/
+__pycache__/
+*.pyc
+
+# ── 操作系统 ──────────────────────────────────
+Thumbs.db
+desktop.ini
+.DS_Store

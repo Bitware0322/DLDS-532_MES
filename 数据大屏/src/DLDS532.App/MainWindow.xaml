@@ -1,0 +1,123 @@
+<Window x:Class="DLDS532.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:DLDS532.App.Controls"
+        xmlns:vm="clr-namespace:DLDS532.App.ViewModels"
+        xmlns:views="clr-namespace:DLDS532.App.Views"
+        Title="DLDS-532 工业网络智能控制与维护可视化系统"
+        Width="1680" Height="945" MinWidth="1180" MinHeight="663"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource B.WindowDeep}"
+        TextOptions.TextFormattingMode="Display"
+        UseLayoutRounding="True"
+        FontFamily="{StaticResource F.Sans}">
+
+    <Grid Background="{StaticResource B.Window}">
+        <Viewbox Stretch="Uniform">
+            <Grid Width="1920" Height="1080">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="988" />
+                    <RowDefinition Height="16" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="64" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="484" />
+                    <ColumnDefinition Width="16" />
+                    <ColumnDefinition Width="802" />
+                    <ColumnDefinition Width="16" />
+                    <ColumnDefinition Width="498" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+
+                <!-- ==================== 顶部栏（无品牌区，标题全窗口居中） ==================== -->
+                <Border Grid.Row="0" Grid.ColumnSpan="8" Background="{StaticResource B.TopBar}"
+                        BorderBrush="#FF22313C" BorderThickness="0,0,0,1">
+                    <Grid Margin="24,0">
+                        <TextBlock Text="{Binding AppTitle}" FontSize="22" FontWeight="SemiBold"
+                                   Foreground="{StaticResource B.Value}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="{Binding DateText}" FontSize="12" Foreground="{StaticResource B.Label}"
+                                       VerticalAlignment="Center" Margin="0,0,14,0" />
+                            <TextBlock Text="{Binding TimeText}" FontFamily="{StaticResource F.Num}" FontSize="21"
+                                       FontWeight="SemiBold" Foreground="{StaticResource B.Value}"
+                                       VerticalAlignment="Center" Width="88" TextAlignment="Right" Margin="0,0,18,0" />
+
+                            <Border Background="#14FFFFFF" BorderBrush="#22FFFFFF" BorderThickness="1"
+                                    CornerRadius="11" Padding="10,4" VerticalAlignment="Center" Margin="0,0,8,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:Lamp Color="{Binding ConnBrush}" Diameter="7" VerticalAlignment="Center"
+                                                   Pulse="{Binding IsOffline}" />
+                                    <TextBlock Text="{Binding ConnText}" Margin="7,0,0,0" FontSize="11.5"
+                                               Foreground="{Binding ConnBrush}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="#14FFFFFF" BorderBrush="#22FFFFFF" BorderThickness="1"
+                                    CornerRadius="11" Padding="10,4" VerticalAlignment="Center" Margin="0,0,8,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:Lamp Color="{Binding RefreshBrush}" Diameter="7" VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding RefreshText}" Margin="7,0,0,0" FontSize="11.5"
+                                               Foreground="{Binding RefreshBrush}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="#14FFFFFF" BorderBrush="#22FFFFFF" BorderThickness="1"
+                                    CornerRadius="11" Padding="10,4" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding SourceBadge}" FontSize="11.5"
+                                           Foreground="{Binding SourceBadgeBrush}" />
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- ==================== 左侧导航 ==================== -->
+                <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Background="#FF0D151C">
+                    <ItemsControl ItemsSource="{Binding NavItems}" Margin="0,12,0,0" VerticalAlignment="Top">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <ToggleButton Style="{StaticResource Btn.Nav}"
+                                              IsChecked="{Binding IsSelected, Mode=OneWay}"
+                                              IsEnabled="{Binding IsEnabled}"
+                                              ToolTip="{Binding Tooltip}"
+                                              Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                              CommandParameter="{Binding}">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Glyph}" FontSize="19" HorizontalAlignment="Center" />
+                                        <TextBlock Text="{Binding Label}" FontSize="9.5" HorizontalAlignment="Center"
+                                                   Margin="0,3,0,0" />
+                                    </StackPanel>
+                                </ToggleButton>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+
+                <!-- ==================== 页面内容 ==================== -->
+                <ContentControl Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5"
+                                Content="{Binding CurrentPage}">
+                    <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+                            <views:DashboardView />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:CommViewModel}">
+                            <views:CommView />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:FieldsViewModel}">
+                            <views:FieldsView />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+                            <views:SettingsView />
+                        </DataTemplate>
+                    </ContentControl.Resources>
+                </ContentControl>
+
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Window>

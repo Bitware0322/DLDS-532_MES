@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\DLDS532.DataModels\DLDS532.DataModels.csproj" />
+    <ProjectReference Include="..\DLDS532.PlcData\DLDS532.PlcData.csproj" />
+    <ProjectReference Include="..\DLDS532.Communication\DLDS532.Communication.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
